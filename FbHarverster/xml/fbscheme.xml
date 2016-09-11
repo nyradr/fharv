@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE scheme SYSTEM "https://raw.githubusercontent.com/nyradr/HTML_Harvester/master/HtmlHarvester/dtd/scheme.dtd">
+
+<!-- Facebook harvesting scheme
+ -->
+<scheme>
+	<!-- Basic informations page -->
+	<page name="basics">
+		<!-- Person name -->
+		<data name="name" type="txt">
+			<xpath>//div[@class='cls']/span/strong</xpath>
+			<xargs id="cls">
+				<arg>bq</arg>
+			</xargs>
+		</data>
+		<data name="sexe" type="txt">
+			<xpath></xpath>
+			<xargs id=""></xargs>
+		</data>
+		<data name="live" type="txt">
+			<xpath>//div[@class='cls']//a</xpath>
+			<xargs id="cls">
+				<arg>dg cu</arg>
+			</xargs>
+		</data>
+	</page>
+
+	<!-- Friend page scheme -->
+	<page name="friends">
+		<data name="friend" type="att">
+			<xpath>//td[@class='cls']/a/@href</xpath>
+			<xargs id="cls">
+				<arg>w t</arg>
+			</xargs>
+		</data>
+		<data name="nextfrd" all="0" type="att">
+			<xpath>//div[@id='m_more_friends']/a/@href</xpath>
+		</data>
+	</page>
+	
+	<!-- Main photos pages, entry inside all photo -->
+	<page name="allphotos">
+		<data name="ap_all" all="0" type="att">
+			<xpath>//div[@class='cls']//a/@href</xpath>
+			<xargs id="cls">
+				<arg>ck</arg>
+				<arg>ci</arg>
+			</xargs>
+		</data>
+	</page>
+	
+	<!-- Photos list -->
+	<page name="photos">
+		<data name="ph_phs" type="att">
+			<xpath>//a [@class='cls']/@href</xpath>
+			<xargs id="cls">
+				<arg>bb bc</arg>
+			</xargs>
+		</data>
+		<data name="ph_next" all="0" type="att">
+			<xpath>//div[@id='m_more_item']/a/@href</xpath>
+		</data>
+	</page>
+	
+	<!-- A Photo page -->
+	<page name="photo">
+		<data name="ph_date" all="0" type="txt">
+			<xpath>//div[@class='cls']//abbr</xpath>
+			<xargs id="cls">
+				<arg>bw</arg>
+				<arg>bv</arg>
+				<arg>by bv bw</arg>
+				<arg>by bw bt</arg>
+				<arg>bt br bo</arg>
+				<arg>ca bx by</arg>
+			</xargs>
+		</data>
+		<data name="ph_likes" all="0" type="att">
+			<xpath>//div[@class='cls']/a/@href</xpath>
+			<xargs id="cls">
+				<arg>cc cd ce cf</arg>
+				<arg>cd ce cf cg</arg>
+				<arg>ce cf cg ch</arg>
+				<arg>bz ca cb cc</arg>
+				<arg>cg ch ci cj</arg>
+			</xargs>
+		</data>
+	</page>
+	
+	<!-- Likes page -->
+	<page name="likes">
+		<data name="lk_pers" type="att">
+			<xpath>//h3[@class='cls']//a/@href</xpath>
+			<xargs id="cls">
+				<arg>be</arg>
+			</xargs>
+		</data>
+		<data name="lk_next" all="0" type="att">
+			<xpath>//td[@class='cls']/div/a/@href</xpath>
+			<xargs id="cls">
+				<arg>s x</arg>
+			</xargs>
+		</data>
+	</page>
+	
+	<!-- Login form -->
+	<form name="login">
+		<path>
+			<xpath>//form[@id='login_form']</xpath>
+		</path>
+		<input name="email"></input>
+		<input name="pass"></input>
+		<submit>
+			<xpath>//input[@type='submit']</xpath>
+		</submit>
+		<result>
+			<page name="resfid">
+				<data name="title" all="0" type="txt">
+					<xpath>//title</xpath>
+				</data>
+			</page>
+		</result>
+	</form>
+</scheme>
