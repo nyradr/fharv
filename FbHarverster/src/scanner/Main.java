@@ -4,7 +4,7 @@ public class Main {
 	
 	private static final String server = "https://localhost/fb/";
 	private static final String fbuser = "fscan@gmx.fr";
-	private static final String fbpass = "FbScanner";
+	private static final String fbpass = "FbScanneraaa";
 	private static final int maxth = 1;
 
 	public static void main(String [] args){

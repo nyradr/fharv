@@ -20,6 +20,7 @@ import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
 import fb.account.IAccountInfo;
 import fb.account.IPhoto;
 import fb.account.Sexe;
+import fb.exception.LoginError;
 import harvester.Harvester;
 import harvester.data.IPage;
 import harvester.scheme.Scheme;
@@ -27,7 +28,7 @@ import harvester.scheme.SchemeParseError;
 
 public class FbManager {
 	private final String fb = "https://www.facebook.com/";
-	private final String mfb = "https://www.facebook.com/";
+	private final String mfb = "https://m.facebook.com/";
 	
 	private WebClient browser;
 	private Scheme scheme;
@@ -44,6 +45,7 @@ public class FbManager {
 		Scheme scheme = new Scheme(new File("xml/fbscheme.xml"));
 		harvest = new Harvester(scheme, browser);
 		
+		basescan = new BaseInfoScan(harvest);
 		frdscran = new FriendsScan(harvest);
 		photoscan = new PhotosPagesScan(harvest);
 		
@@ -57,12 +59,31 @@ public class FbManager {
 	}
 	
 	/**
+	 * Test if the page title can correspond to a logged account
+	 * @param title page title
+	 * @return false is the account isn't logged
+	 */
+	protected boolean isLogged(String title){
+		final String[] nlogtitle = {
+			"bienvenue",
+			"log into",
+			"confirmer"
+		};
+		
+		for(int i = 0; i < nlogtitle.length; i++)
+			if (title.toLowerCase().contains(nlogtitle[i]))
+				return false;
+		
+		return true;
+	}
+	
+	/**
 	 * Log into Facebook
 	 * @param user Facebook user name
 	 * @param pass account password
 	 * @return true if logged sucess
 	 */
-	public boolean login(String user, String pass){
+	public boolean login(String user, String pass) throws LoginError{
 		boolean logged = false;
 		
 		try{
@@ -74,12 +95,15 @@ public class FbManager {
 			
 			// login verification
 			String title = page.getByName("title").getText();
-			logged = !title.toLowerCase().contains("log into");
+			logged = isLogged(title);
 		}catch(Exception e){
 			e.printStackTrace();
 			lastError = e;
 		}
 		
+		// login failed
+		if(!logged)
+			throw new LoginError();
 		return logged;
 	}
 	

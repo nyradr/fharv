@@ -21,6 +21,7 @@ import com.gargoylesoftware.htmlunit.util.NameValuePair;
 
 import fb.FbManager;
 import fb.account.IAccountInfo;
+import fb.exception.LoginError;
 import harvester.scheme.SchemeParseError;
 
 /**
@@ -39,7 +40,7 @@ public class FbScanManager implements IScanOver{
 	private int maxthread;
 	private Set<ScanThread> scans;
 	
-	public FbScanManager(String addr, String user, String pass, int maxth) throws FileNotFoundException, SchemeParseError{
+	public FbScanManager(String addr, String user, String pass, int maxth) throws FileNotFoundException, SchemeParseError, LoginError{
 		browser = new WebClient();
 		
 		serverAddress = addr;
@@ -48,8 +49,7 @@ public class FbScanManager implements IScanOver{
 			System.out.println("Login success");
 			maxthread = maxth;
 			scans = new HashSet<>();
-		}else
-			System.out.println("Login error");
+		}
 	}
 	
 	

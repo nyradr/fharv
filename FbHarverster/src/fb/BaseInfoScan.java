@@ -15,7 +15,6 @@ class BaseInfoScan extends Scanner{
 	public AccountInfo scan(String url, String fbid){
 		AccountInfo acc = new AccountInfo(fbid);
 		
-		
 		return acc;
 	}
 }
