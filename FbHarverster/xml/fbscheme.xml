@@ -13,10 +13,6 @@
 				<arg>bq</arg>
 			</xargs>
 		</data>
-		<data name="sexe" type="txt">
-			<xpath></xpath>
-			<xargs id=""></xargs>
-		</data>
 		<data name="live" type="txt">
 			<xpath>//div[@class='cls']//a</xpath>
 			<xargs id="cls">

@@ -17,7 +17,6 @@ import com.gargoylesoftware.htmlunit.HttpMethod;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.WebRequest;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import com.gargoylesoftware.htmlunit.javascript.configuration.WebBrowser;
 import com.gargoylesoftware.htmlunit.util.NameValuePair;
 
 import fb.FbManager;
@@ -45,9 +44,12 @@ public class FbScanManager implements IScanOver{
 		
 		serverAddress = addr;
 		manager = new FbManager(browser);
-		manager.login(user, pass);
-		maxthread = maxth;
-		scans = new HashSet<>();
+		if(manager.login(user, pass)){
+			System.out.println("Login success");
+			maxthread = maxth;
+			scans = new HashSet<>();
+		}else
+			System.out.println("Login error");
 	}
 	
 	

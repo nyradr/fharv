@@ -70,7 +70,7 @@ public class FbManager {
 			log.put("email", user);
 			log.put("pass", pass);
 			
-			IPage page = harvest.submit("https://www.facebook.com/", "login", log);
+			IPage page = harvest.submit("https://m.facebook.com/", "login", log);
 			
 			// login verification
 			String title = page.getByName("title").getText();
