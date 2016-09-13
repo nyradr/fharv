@@ -1,0 +1,27 @@
+{
+    "id" : "fbid",
+    "name" : "pers name",
+    "sexe" : "0|1",
+    "birth" : "date",
+    "langs" : ["fr", "de"],
+    "friends" : ["totoid", "dedeid"],
+    "work" : ["pl1", "pl2"],
+    "live" : ["pl2"],
+    "photos" : [
+        {
+            "url" : "http://imgurl",
+            "post" : "2000-01-01 00:00:00",
+            "descr" : "superbe image",
+            "likes" : ["totoid", "fbid"],
+            "refs" : ["totoid"],
+            "coms" : [
+                {
+                    "post" : "totoid",
+                    "date" : "date",
+                    "val" : "comment value (with refs)",
+                    "likes" : ["fbid"]
+                }
+            ]
+        }
+    ]
+}
