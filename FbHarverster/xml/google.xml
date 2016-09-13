@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE scheme SYSTEM "https://raw.githubusercontent.com/nyradr/HTML_Harvester/master/HtmlHarvester/dtd/scheme.dtd">
+
+<scheme>
+	<page name="google">
+		<data name="g_res" all="1" type="att">
+			<xpath>//h3[@class='cls']/a/@href</xpath>
+			<xargs id="cls">
+				<arg>r</arg>
+			</xargs>
+		</data>
+	</page>
+</scheme>
