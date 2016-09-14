@@ -1,8 +1,9 @@
+-- accounts allowed to use the scanner
 CREATE TABLE Scanner(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    sname VARCHAR(64) UNIQUE NOT NULL,
-    pass CHAR(64) NOT NULL,
-    status INT
+    id INT AUTO_INCREMENT PRIMARY KEY,	-- account id
+    sname VARCHAR(64) UNIQUE NOT NULL,	-- user name
+    pass CHAR(64) NOT NULL,				-- password
+    status INT							-- account status (0 for blocked)
     );
 
 -- Represent a single word (name part, word, ...)
