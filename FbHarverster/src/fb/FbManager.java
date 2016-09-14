@@ -63,7 +63,7 @@ public class FbManager {
 	 * @param title page title
 	 * @return false is the account isn't logged
 	 */
-	protected boolean isLogged(String title){
+	private boolean isLogged(String title){
 		final String[] nlogtitle = {
 			"bienvenue",
 			"log into",
@@ -75,6 +75,29 @@ public class FbManager {
 				return false;
 		
 		return true;
+	}
+	
+	/**
+	 * Try to unlock account
+	 * locked by birth date
+	 * @return true if the account is unlocked
+	 */
+	private boolean tryUnlock(){
+		String url = mfb + "login/confirmation";
+		
+		try{
+			IPage page = harvest.submit(url, "unlock1", new TreeMap<>());
+			if(page.getByName("titleunlk").getText().contains("date")){
+				Map<String, String> dates = new TreeMap<>();
+				
+				page = harvest.submit(url, "unlock2", dates);
+				return isLogged(page.getByName("titleunlk2").getText());
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return false;
 	}
 	
 	/**
@@ -91,7 +114,7 @@ public class FbManager {
 			log.put("email", user);
 			log.put("pass", pass);
 			
-			IPage page = harvest.submit("https://m.facebook.com/", "login", log);
+			IPage page = harvest.submit(mfb, "login", log);
 			
 			// login verification
 			String title = page.getByName("title").getText();

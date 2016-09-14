@@ -117,4 +117,43 @@
 			</page>
 		</result>
 	</form>
+	<form name="unlock1">
+		<path>
+			<xpath>//div[@id='id']/form</xpath>
+			<xargs id="id">
+				<arg>root</arg>
+			</xargs>
+		</path>
+		<submit>
+			<xpath>//input[@type='submit']</xpath>
+		</submit>
+		<result>
+			<page name="resunlk">
+				<data name="titleunlk" type="txt">
+					<xpath>//title</xpath>
+				</data>
+			</page>
+		</result>
+	</form>
+	<form name="unlock2">
+		<path>
+			<xpath>//div[@id='id']/form</xpath>
+			<xargs id="id">
+				<arg>root</arg>
+			</xargs>
+		</path>
+		<input name="birthday_captcha_day"></input>
+		<input name="birthday_captcha_month"></input>
+		<input name="birthday_captcha_year"></input>
+		<submit>
+			<xpath>//input[@type="submit"]</xpath>
+		</submit>
+		<result>
+			<page name="resunlk2">
+				<data name="titleunlk2" type="txt">
+					<xpath>//title</xpath>
+				</data>
+			</page>
+		</result>
+	</form>
 </scheme>
